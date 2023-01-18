@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  </head>
+  <body>
+  <style type="text/css">
+    img-comparison-slider {
+      --divider-width: 1px;
+      --divider-color: #9a93fa;
+      --default-handle-opacity: 1;
+    }
+  </style>
+    
+    <div class="container">
+      <h2>Uploaded Image Comparison Slider</h2>
+      <form>
+        <div class="form-group">
+          <label for="image-upload">Select Image:</label>
+          <input type="file" class="form-control-file" id="image-upload">
+          <input type="file" class="form-control-file" id="image-upload2">
+        </div>
+      </form>
+      <br>
+      <img-comparison-slider>
+        <img slot="first" src="https://img-comparison-slider.sneas.io/images/green-leaves.webp" class="img-fluid" alt="Uploaded Image" id="uploaded-image" />
+        <img slot="second" src="https://img-comparison-slider.sneas.io/images/green-leaves-blurred.webp" class="img-fluid" alt="Uploaded Image" id="uploaded-image2" />
+      </img-comparison-slider>
+    </div>
+
+    <script
+      defer
+      src="https://unpkg.com/img-comparison-slider@7/dist/index.js"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/img-comparison-slider@7/dist/styles.css"
+    />
+
+    <script>
+      var imageUpload = document.getElementById("image-upload");
+      var imageUpload2 = document.getElementById("image-upload2");
+      var uploadedImage = document.getElementById("uploaded-image");
+      var uploadedImage2 = document.getElementById("uploaded-image2");
+      
+      imageUpload.onchange = function() {
+        var reader = new FileReader();
+        reader.onload = function() {
+          uploadedImage.src = reader.result;
+        }
+        reader.readAsDataURL(imageUpload.files[0]);
+      }
+      imageUpload2.onchange = function() {
+        var reader = new FileReader();
+        reader.onload = function() {
+          uploadedImage2.src = reader.result;
+        }
+        reader.readAsDataURL(imageUpload2.files[0]);
+      }
+    </script>
+  </body>
+</html>
